@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class StartLevl : MonoBehaviour
 {
@@ -9,25 +10,32 @@ public class StartLevl : MonoBehaviour
     [SerializeField] GameObject carmini;
     [SerializeField] GameObject Helper;
     [SerializeField] GameObject Panel;
-    [SerializeField] GameObject button;
-    [SerializeField] AudioClip click;
-    [SerializeField] AudioClip carsta;
-    [SerializeField] AudioSource audiosource;
+
+    public int count;
+    [SerializeField] private int coutMax;
+
+    [SerializeField] AudioSource audioPlayer;
+
+    [SerializeField] private AudioClip startGruzovik;
+
+    [SerializeField] private GameObject WinPanel;
 
     private void Start()
-    {
-        audiosource = GetComponent<AudioSource>();
-    }
-
-
-    public void StartGame()
     {
         car.GetComponent<Animator>().SetTrigger("Start");
         carmini.GetComponent<Animator>().SetTrigger("Start");
         Helper.GetComponent<Animator>().SetTrigger("Start");
         Panel.GetComponent<Animator>().SetTrigger("Start");
-        button.SetActive(false);
-        audiosource.PlayOneShot(click);
-        audiosource.PlayOneShot(carsta);
+        audioPlayer.PlayOneShot(startGruzovik);
     }
+
+    private void Update()
+    {
+        if(count == coutMax)
+        {
+            WinPanel.SetActive(true);
+            count = 0;
+        }
+    }
+
 }

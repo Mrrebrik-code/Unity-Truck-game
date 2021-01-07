@@ -19,13 +19,19 @@ public class DragDrop : MonoBehaviour,
     public Vector2 _startPosition;
     public Vector2 _startScale;
     private Vector2 _normalScale;
+    public bool onDrop = false;
 
     [SerializeField] Image figureScale;
     public GameObject Left;
     public GameObject Right;
     public string figureID;
 
+    public  float currentRot;
 
+    private void Update()
+    {
+        currentRot = transform.eulerAngles.z;
+    }
     private void Awake()
     {   
         recTransform = GetComponent<RectTransform>();
@@ -41,27 +47,30 @@ public class DragDrop : MonoBehaviour,
         recTransform.sizeDelta = _normalScale;
         Left.SetActive(true);
         Right.SetActive(true);
-        Debug.Log(recTransform.rotation.z);
+        Debug.Log(currentRot);
+        Debug.Log("OnBeginDrag");
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         recTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        Debug.Log("OnDrag");
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-
+        Debug.Log("OnDrop");
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
+        Debug.Log("OnEndDrag");
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-
+        Debug.Log("OnPointerDown");
     }
 
     public void RightRotButton()

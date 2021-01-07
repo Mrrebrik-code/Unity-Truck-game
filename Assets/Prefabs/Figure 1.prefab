@@ -103,10 +103,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0637e868c6c0146b2948111ea07629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recTransform: {fileID: 0}
   canvas: {fileID: 0}
+  canvasGroup: {fileID: 0}
+  _startPosition: {x: 0, y: 0}
+  _startScale: {x: 0, y: 0}
   figureScale: {fileID: 0}
   Left: {fileID: 965562135245450016}
   Right: {fileID: 8627335184087038561}
+  figureID: 
 --- !u!1 &965562135245450016
 GameObject:
   m_ObjectHideFlags: 0
